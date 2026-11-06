@@ -35,7 +35,13 @@ void vect_compute_dist_cpu(
     size_t dim,
     VectMetric metric);
 
-// Pending of implementation
+/*
+    Computes de distance from a query vector to every other vector on the GPU
+    @param dataset: row-major, n * dim floats.
+    @param query: dim floats. out_distances: n floats.
+    @param Punteros de host. Alineación de 32 bytes para AVX2. 
+    If query vector is in dataset, its distance will return 0. Exclude it from the dataset if this is not wanted 
+    If metric is different from 0 and 1, it will default to L2 squared */
 void vect_compute_dist_cuda(
     const float *d_query,
     const float *d_dataset,
